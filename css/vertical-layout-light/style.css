@@ -1,121 +1,3 @@
-/*------------------------------------------------------------------
- [Master Stylesheet]
-
-  Project:	SkyDash Admin
-  Version:	1.2.1
--------------------------------------------------------------------*/
-/*-------------------------------------------------------------------
-  ===== Table of Contents =====
-
-  * Bootstrap functions
-  * Template variables
-  * SCSS Compass Functions
-  * Boostrap Main SCSS
-  * Template mixins
-    + Animation Mixins
-    + Badge Mixins
-    + Button Mixins
-    + Miscellaneous Mixins
-    + BlockQuote Mixins
-    + Cards Mixins
-    + Color Functions Mixins
-    + Tooltips
-    + popovers
-  * Core Styles
-    + Reset Styles
-    + Fonts
-    + Functions
-    + Backgrounds
-    + Sidebar
-    + Navbar
-    + Typography
-    + Miscellaneous
-    + Footer
-    + Layouts
-    + Utilities
-    + Demo styles
-  * Components
-    + Accordions
-    + Badges
-    + Bootstrap Alerts
-    + Boostrap Progress
-    + Buttons
-    + Breadcrumbs
-    + Cards
-    + Checkboxes and Radios
-    + Dropdowns
-    + Forms
-    + Google maps
-    + Icons
-    + Loaders
-    + Lists
-    + Modals
-    + Pagination
-    + Popover
-    + Portfolio
-    + Preview
-    + Tables
-    + Tabs
-    + Timeline
-    + Todo List
-    + Tooltips
-    + User Profile
-    + Pricing table
-    + Settings Panel
-  * Email
-    + Mail Sidebar
-    + Mail List Container
-    + Message Content
-  * Plugin Overrides
-    + Ace Editor
-    + Avgrund Popup
-    + Bootstrap Tour
-    + Chartist
-    + CodeMirror
-    + Colcade
-    + Colorpicker
-    + Context Menu
-    + Data Tables
-    + Datepicker
-    + Dropify
-    + Dropzone
-    + Flot chart
-    + Full Calendar
-    + Google Charts
-    + Icheck
-    + Jquery File Upload
-    + Js-grid
-    + Jvectormap
-    + Light Gallery
-    + Listify
-    + No-ui-slider
-    + Owl-carousel
-    + Progressbar-js
-    + Pws-tabs
-    + Quill Editor
-    + Rating
-    + Select2
-    + Summernote Editor
-    + SweetAlert
-    + Switchery
-    + Tags
-    + TinyMCE Editor
-    + Toast
-    + Typeahead
-    + Wysi Editor
-    + X-editable
-    + Wizard
-  * Landing screens
-    + Auth
-  * Horizontal Menu
-    + Horizontal
--------------------------------------------------------------------*/
-/*-------------------------------------------------------------------*/
-/* === Import Bootstrap functions and variables === */
-/*-------------------------------------------------------------------*/
-/* === Import template variables === */
-/*-------------------------------------------------------------------*/
-/* === SCSS Compass Functions === */
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -10499,6 +10381,7 @@ pre code {
   .tt-query,
   .tt-hint {
     transition: none;
+    outline:none;
   }
 }
 
@@ -10508,6 +10391,7 @@ pre code {
 .tt-hint::-ms-expand {
   background-color: transparent;
   border: 0;
+  outline:none;
 }
 
 .form-control:-moz-focusring, .asColorPicker-input:-moz-focusring, .dataTables_wrapper select:-moz-focusring, .jsgrid .jsgrid-table .jsgrid-filter-row input:-moz-focusring[type=text],
@@ -10516,6 +10400,7 @@ pre code {
 .tt-hint:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #495057;
+  outline:none;
 }
 
 .form-control:focus, .asColorPicker-input:focus, .dataTables_wrapper select:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input:focus[type=text],
@@ -10527,6 +10412,7 @@ pre code {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline:none;
 }
 
 .form-control::placeholder, .asColorPicker-input::placeholder, .dataTables_wrapper select::placeholder, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text]::placeholder,
@@ -10535,6 +10421,7 @@ pre code {
 .tt-hint::placeholder {
   color: #c9c8c8;
   opacity: 1;
+  outline: none;
 }
 
 .form-control:disabled, .asColorPicker-input:disabled, .dataTables_wrapper select:disabled, .jsgrid .jsgrid-table .jsgrid-filter-row input:disabled[type=text],
@@ -10546,6 +10433,7 @@ pre code {
 .tt-hint[readonly] {
   background-color: #e9ecef;
   opacity: 1;
+  outline: none;
 }
 
 input[type="date"].form-control, input.asColorPicker-input[type="date"], .jsgrid .jsgrid-table .jsgrid-filter-row input[type="date"][type=text], .jsgrid .jsgrid-table .jsgrid-filter-row input[type="date"][type=number], .select2-container--default input.select2-selection--single[type="date"], .select2-container--default .select2-selection--single input.select2-search__field[type="date"], input.typeahead[type="date"],
@@ -10579,6 +10467,7 @@ input.typeahead[type="month"],
 input.tt-query[type="month"],
 input.tt-hint[type="month"] {
   appearance: none;
+  outline: none;
 }
 
 select.form-control:focus::-ms-value, select.asColorPicker-input:focus::-ms-value, .dataTables_wrapper select:focus::-ms-value,
@@ -10587,6 +10476,7 @@ select.tt-query:focus::-ms-value,
 select.tt-hint:focus::-ms-value {
   color: #495057;
   background-color: #ffffff;
+  outline: none;
 }
 
 .form-control-file,
@@ -12470,6 +12360,7 @@ input[type="button"].btn-block {
 .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label,
 .asColorPicker-wrap > .custom-file .custom-file-input:focus ~ .custom-file-label {
   z-index: 3;
+  outline: none;
 }
 
 .input-group > .custom-file .custom-file-input:focus, .asColorPicker-wrap > .custom-file .custom-file-input:focus {
@@ -19171,9 +19062,7 @@ a.text-dark:hover, a.text-dark:focus {
   animation-name: fadeInUp;
 }
 
-/*-------------------------------------------------------------------*/
-/* === Core Styles === */
-/* Reset Styles */
+
 body {
   padding: 0;
   margin: 0;
@@ -19190,7 +19079,7 @@ body {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  outline: 0;
+  outline: none !important;
 }
 
 a,
@@ -19280,6 +19169,7 @@ textarea:visited {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  outline: none;
 }
 
 .btn.active.focus, .fc button.active.focus, .ajax-upload-dragdrop .active.focus.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .active.focus.swal2-styled, .wizard > .actions a.active.focus,
@@ -19323,7 +19213,7 @@ button:visited {
 a:focus,
 input:focus {
   border-color: transparent;
-  outline: none;
+  outline: none !important;
 }
 
 @font-face {
@@ -22652,7 +22542,7 @@ select.tt-query,
 select.tt-hint {
   padding: .4375rem .75rem;
   border: 0;
-  outline: 1px solid #CED4DA;
+  outline: none;
   color: #c9c8c8;
 }
 
@@ -22660,21 +22550,21 @@ select.form-control:focus, select.asColorPicker-input:focus, .dataTables_wrapper
 .jsgrid .jsgrid-table .jsgrid-filter-row select:focus, .select2-container--default select.select2-selection--single:focus, .select2-container--default .select2-selection--single select.select2-search__field:focus, select.typeahead:focus,
 select.tt-query:focus,
 select.tt-hint:focus {
-  outline: 1px solid #CED4DA;
+  outline: none;
 }
 
 select.form-control.border-primary, select.border-primary.asColorPicker-input, .dataTables_wrapper select.border-primary,
 .jsgrid .jsgrid-table .jsgrid-filter-row select.border-primary, .select2-container--default select.border-primary.select2-selection--single, .select2-container--default .select2-selection--single select.border-primary.select2-search__field, select.border-primary.typeahead,
 select.border-primary.tt-query,
 select.border-primary.tt-hint {
-  outline: 1px solid #4B49AC;
+  outline: none;
 }
 
 select.form-control.border-primary:focus, select.border-primary.asColorPicker-input:focus, .dataTables_wrapper select.border-primary:focus,
 .jsgrid .jsgrid-table .jsgrid-filter-row select.border-primary:focus, .select2-container--default select.border-primary.select2-selection--single:focus, .select2-container--default .select2-selection--single select.border-primary.select2-search__field:focus, select.border-primary.typeahead:focus,
 select.border-primary.tt-query:focus,
 select.border-primary.tt-hint:focus {
-  outline: 1px solid #4B49AC;
+  outline: none;
 }
 
 select.form-control.border-secondary, select.form-control.loader-demo-box, select.loader-demo-box.asColorPicker-input, .dataTables_wrapper select.loader-demo-box,
@@ -22684,7 +22574,7 @@ select.loader-demo-box.tt-hint, select.border-secondary.asColorPicker-input, .da
 .jsgrid .jsgrid-table .jsgrid-filter-row select.border-secondary, .select2-container--default select.border-secondary.select2-selection--single, .select2-container--default .select2-selection--single select.border-secondary.select2-search__field, select.border-secondary.typeahead,
 select.border-secondary.tt-query,
 select.border-secondary.tt-hint {
-  outline: 1px solid #a3a4a5;
+  outline: none;
 }
 
 select.form-control.border-secondary:focus, select.form-control.loader-demo-box:focus, select.loader-demo-box.asColorPicker-input:focus, .dataTables_wrapper select.loader-demo-box:focus,
@@ -22694,7 +22584,7 @@ select.loader-demo-box.tt-hint:focus, select.border-secondary.asColorPicker-inpu
 .jsgrid .jsgrid-table .jsgrid-filter-row select.border-secondary:focus, .select2-container--default select.border-secondary.select2-selection--single:focus, .select2-container--default .select2-selection--single select.border-secondary.select2-search__field:focus, select.border-secondary.typeahead:focus,
 select.border-secondary.tt-query:focus,
 select.border-secondary.tt-hint:focus {
-  outline: 1px solid #a3a4a5;
+  outline: none;
 }
 
 select.form-control.border-success, select.border-success.asColorPicker-input, .swal2-modal .swal2-buttonswrapper select.asColorPicker-input.swal2-styled.swal2-confirm, .dataTables_wrapper select.border-success, .dataTables_wrapper .swal2-modal .swal2-buttonswrapper select.swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .dataTables_wrapper select.swal2-styled.swal2-confirm,
