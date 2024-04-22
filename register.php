@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NDDU ITS</title>
+    <title>NDDU AMS</title>
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-update btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="">SIGN UP</a>
+                                        href="" id="submit">SIGN UP</a>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                     Already have an account? <a href="index.php" class="text-primary">Login</a>
@@ -118,6 +118,16 @@
     <script src="js/template.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/todolist.js"></script>
+
+
+    <script>
+    document.getElementById("submit").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            this.submit();
+        }
+    });
+    </script>
 </body>
 
 </html>

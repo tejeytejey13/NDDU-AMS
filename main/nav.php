@@ -16,7 +16,7 @@ if(isset($_SESSION['rfidUID']) && isset($_SESSION['subjectCode']) && isset($_SES
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="#"><img src="../images/nddu/nddulogo.png" class="mr-2"
-                alt="logo" /><span style="color:  #1a6431; font-weight: 700">NDDU ITS</span></a>
+                alt="logo" /><span style="color:  #1a6431; font-weight: 700">NDDU AMS</span></a>
         <a class="navbar-brand brand-logo-mini" href="#"><img src="../images/nddu/nddulogo.png" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">

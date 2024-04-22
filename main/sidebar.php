@@ -18,5 +18,12 @@
                 <span class="menu-title">Register Student</span>
             </a>
         </li>
+
+
+        <li class="nav-item" style="text-align:center; font-weight: 900; margin-top: 65vh;">
+            <h2 style="font-size: 12px; font-weight: 900; color: rgb(108, 115, 131)">POWERED BY<img src="../images/nddu/ams.png" alt=""
+                    style="height: 35px; width: 65px;"></h2>
+        </li>
+
     </ul>
 </nav>

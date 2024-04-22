@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NDDU ITS</title>
+    <title>NDDU AMS</title>
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -28,7 +28,7 @@
     <div class="container-scroller">
         <?php require_once 'nav.php' ?>
         <div class="container-fluid page-body-wrapper">
-            <?php require_once 'sidebar.php'; ?>
+        <?php require_once 'sidebar.php'; ?>
             <div class="main-panel">
                 <div class="content-wrapper">
 
@@ -40,6 +40,10 @@
                                 $name = $data['firstname'].' '.$data['middlename'].' '.$data['lastname'];
                                 $subjectcode = $data['subjectCode'];
                                 $subjectdes = $data['subjectDescription'];
+                                $timeFrom = $data['scheduleFrom'];
+                                $timeTo = $data['scheduleTo'];
+
+                                $formattedTime = date('g:i A', strtotime($timeFrom)) . ' - ' . date('g:i A', strtotime($timeTo));
                             }
                                       
                         ?>
@@ -49,7 +53,7 @@
                                     <div class="card card-tale">
                                         <div class="card-body">
                                             <p class="mb-4">Professor</p>
-                                            <p class="fs-25 mb-2">Welcome, <?=$name?></p>
+                                            <p class="fs-25 mb-2">Welcome, <?=$name?> - ( <?=$formattedTime?> )</p>
                                             <p class="fs-30 mb-2"><?=$subjectcode.' '.$subjectdes?></p>
 
                                         </div>

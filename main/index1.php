@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NDDU ITS</title>
+    <title>NDDU AMS</title>
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -41,6 +41,10 @@
                                 $name = $data['firstname'].' '.$data['middlename'].' '.$data['lastname'];
                                 $subjectcode = $data['subjectCode'];
                                 $subjectdes = $data['subjectDescription'];
+                                $timeFrom = $data['scheduleFrom'];
+                                $timeTo = $data['scheduleTo'];
+
+                                $formattedTime = date('g:i A', strtotime($timeFrom)) . ' - ' . date('g:i A', strtotime($timeTo));
                             }
                                       
                         ?>
@@ -50,8 +54,8 @@
                                     <div class="card card-tale">
                                         <div class="card-body">
                                             <p class="mb-4">Professor</p>
-                                            <p class="fs-25 mb-2">Welcome, <?=$name?></p>
-                                            <p class="fs-30 mb-2"><?=$subjectcode.' '.$subjectdes?></p>
+                                            <p class="fs-25 mb-2">Welcome, <?=$name?> - ( <?=$formattedTime?> )</p>
+                                            <p class="fs-30 mb-3" style="font-sie: auto;"><?=$subjectcode.' '.$subjectdes?></p>
 
                                         </div>
                                     </div>
@@ -108,42 +112,42 @@
 
 
 
-                    <?php
-                    date_default_timezone_set('Asia/Manila');
-                    $select1 = "SELECT * FROM users WHERE rfidUID != '$uid' LIMIT 1";
-                    $query1 = $conn->query($select1);
+                <?php
+                    // date_default_timezone_set('Asia/Manila');
+                    // $select1 = "SELECT * FROM users WHERE rfidUID != '$uid' LIMIT 1";
+                    // $query1 = $conn->query($select1);
 
-                    while ($data1 = $query1->fetch_assoc()) {
-                        $name = $data1['firstname'] . ' ' . $data1['middlename'] . ' ' . $data1['lastname'];
-                        $subjectCode = $data1['subjectCode'];
-                        $subjectDescription = $data1['subjectDescription'];
+                    // while ($data1 = $query1->fetch_assoc()) {
+                    //     $name = $data1['firstname'] . ' ' . $data1['middlename'] . ' ' . $data1['lastname'];
+                    //     $subjectCode = $data1['subjectCode'];
+                    //     $subjectDescription = $data1['subjectDescription'];
 
-                        // Assuming that $data1['scheduleTo'] contains the schedule information
-                        $scheduleTo = $data1['scheduleTo'];
-                        $scheduleToTimestamp = strtotime($scheduleTo);
+                    //     // Assuming that $data1['scheduleTo'] contains the schedule information
+                    //     $scheduleTo = $data1['scheduleTo'];
+                    //     $scheduleToTimestamp = strtotime($scheduleTo);
 
-                        $currentTimestamp = time();
-                        $fiveMinutesBefore = $currentTimestamp - 5 * 60;
+                    //     $currentTimestamp = time();
+                    //     $fiveMinutesBefore = $currentTimestamp - 5 * 60;
 
-                        if ($fiveMinutesBefore < $scheduleToTimestamp) {
-                            echo '<script>
-                            Swal.fire({
-                                title: "Next Schedule Alert",
-                                html: `Your next schedule for ' . $subjectCode . ' - ' . $subjectDescription . ' is approaching!`,
-                                icon: "info",
-                                timer: 5000,
-                                timerProgressBar: true,
-                                showConfirmButton: false,
-                                allowOutsideClick: false,
-                                didOpen: () => {
+                    //     if ($fiveMinutesBefore) {
+                    //         echo '<script>
+                    //         Swal.fire({
+                    //             title: "Next Schedule Alert",
+                    //             html: `Your next schedule for ' . $subjectCode . ' - ' . $subjectDescription . ' is approaching!`,
+                    //             icon: "info",
+                    //             timer: 5000,
+                    //             timerProgressBar: true,
+                    //             showConfirmButton: false,
+                    //             allowOutsideClick: false,
+                    //             didOpen: () => {
                                     
-                                    var audio = new Audio("../alarm1.mp3");
-                                    audio.play();
-                                }
-                            });
-                            </script>';
-                        }
-                    }
+                    //                 var audio = new Audio("../alarm1.mp3");
+                    //                 audio.play();
+                    //             }
+                    //         });
+                    //         </script>';
+                    //     }
+                    // }
                 ?>
 
 

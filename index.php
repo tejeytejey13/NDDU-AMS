@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NDDU ITS</title>
+    <title>NDDU AMS</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -32,7 +32,7 @@
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3">
+                            <form id="loginForm" class="pt-3">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1"
                                         placeholder="Username" name="uid" readonly>
@@ -42,18 +42,10 @@
                                         id="exampleInputPassword1" placeholder="Password" name="password">
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-update btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="#">SIGN IN</a>
+                                    <button type="submit" id="submit"
+                                        class="btn btn-update btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
+                                        IN</button>
                                 </div>
-                                <!-- <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <div class="form-check">
-                                        <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input">
-                                            Keep me signed in
-                                        </label>
-                                    </div>
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                                </div> -->
                                 <div class="text-center mt-4 font-weight-light">
                                     Don't have an account? <a href="register.php" class="text-primary">Create</a>
                                 </div>
@@ -71,7 +63,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="client/js/realtime-login-uid.js"></script>
-    
+
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <script src="js/off-canvas.js"></script>
     <script src="js/hoverable-collapse.js"></script>
@@ -79,6 +71,15 @@
     <script src="js/settings.js"></script>
     <script src="js/todolist.js"></script>
     <!-- endinject -->
+
+    <script>
+        document.getElementById("submit").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault(); 
+                this.submit(); 
+            }
+        });
+    </script>
 </body>
 
 </html>

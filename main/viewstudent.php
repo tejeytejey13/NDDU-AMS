@@ -117,6 +117,10 @@ select {
                                 $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname'];
                                 $subjectcode = $data['subjectCode'];
                                 $subjectdes = $data['subjectDescription'];
+                                $timeFrom = $data['scheduleFrom'];
+                                $timeTo = $data['scheduleTo'];
+
+                                $formattedTime = date('g:i A', strtotime($timeFrom)) . ' - ' . date('g:i A', strtotime($timeTo));
                             }
                         }
 
@@ -131,7 +135,7 @@ select {
                                     <div class="card card-tale">
                                         <div class="card-body">
                                             <p class="mb-4">Professor</p>
-                                            <p class="fs-25 mb-2">Welcome, <?= $name ?></p>
+                                            <p class="fs-25 mb-2">Welcome, <?=$name?> - ( <?=$formattedTime?> )</p>
                                             <p class="fs-30 mb-2"><?= $subjectcode . ' ' . $subjectdes ?></p>
 
                                         </div>

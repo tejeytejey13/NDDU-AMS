@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NDDU - ITS</title>
+    <title>NDDU AMS</title>
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -31,7 +31,7 @@
                         <div class="row w-100 mx-0">
                             <div class="col">
                                 <div class="auth-form-light text-left py-5 px-4 px-sm-5"
-                                    style="display: flex: justify-content: center; margin: 0 auto; width: 60vw;">
+                                    style=" justify-content: center; margin: 0 auto; width: 60vw;">
 
                                     <h6 class="font-weight-light"> Register Student Details
                                     </h6>
@@ -86,16 +86,31 @@
                                                         value="<?=$subjectdes?>" name="subjectdescription" readonly>
                                                 </div>
                                             </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        value="<?= date('g:i A', strtotime($scheduleFrom))?>" id="exampleInputName"
+                                                        placeholder="Subject Code" name="subjectfrom" readonly>
+                                                </div>
+                                            </div>
+                                            <h3 style="margin-top: 10px;">-</h3>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-lg"
+                                                        id="exampleInputName" placeholder="Subject Description"
+                                                        value="<?= date('g:i A', strtotime($scheduleTo))?>" name="subjectto" readonly>
+                                                </div>
+                                            </div>
 
                                         </div>
 
 
                                         <div class="mt-3">
-                                            <a class="btn btn-update btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                                href="">Submit</a>
+                                            <a class="btn btn-update btn-block btn-primary btn-lg font-weight-medium auth-form-btn" 
+                                                href="" id="submit">Submit</a>
                                         </div>
                                     </form>
-                                    
+
 
                                 </div>
                             </div>
@@ -105,19 +120,26 @@
             </div>
         </div>
     </div>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-     <script src="../client/js/register-students.js"></script>                                               
+    <script src="../client/js/register-students.js"></script>
 
 
     <script src="../js/off-canvas.js"></script>
     <script src="../js/hoverable-collapse.js"></script>
     <script src="../js/template.js"></script>
 
-
+    <script>
+    document.getElementById("submit").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            this.submit();
+        }
+    });
+    </script>
 </body>
 
 </html>
