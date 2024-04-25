@@ -1,24 +1,3 @@
-function fetchData() {
-    $.ajax({
-        url: '../client/get1.php',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            if (response.length > 0) {
-                $('#exampleInputUsername1').val(response[0]);
-            } else {
-                $('#exampleInputUsername1').attr("placeholder", "Please Scan the RFID Card First.");
-            }
-        },
-        error: function(error) {
-            console.error('Error retrieving UID:', error.responseText);
-        }
-    });
-}
-
-fetchData();
-setInterval(fetchData, 2000);
-
 $(document).on('click', '.btn-update', function(e) {
     e.preventDefault();
 
@@ -30,13 +9,12 @@ $(document).on('click', '.btn-update', function(e) {
         subjectcode: $('input[name=subjectcode]').val(),
         subjectdescription: $('input[name=subjectdescription]').val(),
         suffix: $('#exampleInputSuffix').val(),
-        course: $('input[name=course]').val(),
-        year: $('input[name=year]').val(),
-        // scheduleto: $('input[name=scheduleto]').val(),
+        schedulefrom: $('input[name=schedulefrom]').val(),
+        scheduleto: $('input[name=scheduleto]').val(),
     };
 
     $.ajax({
-        url: '../client/register-student.php',
+        url: '../client/update-profile.php',
         type: 'POST',
         data: formData,
         dataType: 'json',
@@ -48,13 +26,13 @@ $(document).on('click', '.btn-update', function(e) {
                     title: 'Successsss!',
                     text: response.message,
                 }).then((result) => {
-                    window.location.href = 'registerstudent.php';
+                    window.location.href = 'profile.php';
                 });
             } else {
                 // Show error alert
                 Swal.fire({
                     icon: 'error',
-                    title: 'Erroreeee!',
+                    title: 'Error!',
                     text: response.message,
                 });
             }

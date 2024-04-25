@@ -49,6 +49,26 @@
                                                 id="exampleInputName" placeholder="Last Name" name="lastname">
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <select class=" custom-select" id="exampleInputSuffix" name="suffix">
+                                                <option value="" selected disabled>Choose Suffix
+                                                </option>
+                                                <option value="Jr.">Jr.</option>
+                                                <option value="Sr.">Sr.</option>
+                                                <option value="II">II</option>
+                                                <option value="III">III</option>
+                                                <option value="IV">IV</option>
+                                                <option value="V">V</option>
+                                                <option value="VI">VI</option>
+                                                <option value="VII">VII</option>
+                                                <option value="VIII">VIII</option>
+                                                <option value="IX">IX</option>
+                                                <option value="X">X</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">

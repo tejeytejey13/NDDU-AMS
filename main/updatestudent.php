@@ -36,37 +36,53 @@
                                     <h6 class="font-weight-light"> Register Student Details
                                     </h6>
                                     <form class="pt-3">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg"
-                                                id="exampleInputUsername1" name="uid" placeholder="Username" readonly>
-                                        </div>
+                                        <?php 
+                                            if(isset($_GET['id'])){
+                                                $studentID = $_GET['id'];
+                                            }
+
+                                            $select = "SELECT * FROM users WHERE rfidUID = '$studentID'";
+                                            $query = $conn->query($select);
+                                            while($data = $query->fetch_assoc()){
+                                                $first = $data['firstname'];
+                                                $mid = $data['middlename'];
+                                                $last = $data['lastname'];
+                                                $suff = $data['suffix'];
+                                                $course = $data['course'];
+                                                $year = $data['year'];
+                                            }
+                                        ?>
+
+
+                                        <input type="hidden" name="uid" value="<?=$studentID?>">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="exampleInputName" placeholder="First Name" name="firstname">
+                                                     value="<?=$first?>"   id="exampleInputName" placeholder="First Name" name="firstname">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="exampleInputName" placeholder="Middle Name"
+                                                      value="<?=$mid?>"  id="exampleInputName" placeholder="Middle Name"
                                                         name="middlename">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="exampleInputName" placeholder="Last Name" name="lastname">
+                                                      value="<?=$last?>"  id="exampleInputName" placeholder="Last Name" name="lastname">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <select class="form-control form-control-lg" id="exampleInputSuffix"
+                                                    <select class=" custom-select" id="exampleInputSuffix"
                                                         name="suffix">
-                                                        <option value="" selected disabled>Choose a suffix</option>
+                                                        <option value="<?=$suCompuff?>" selected disabled><?=$suff?>
+                                                        </option>
                                                         <option value="Jr.">Jr.</option>
                                                         <option value="Sr.">Sr.</option>
                                                         <option value="II">II</option>
@@ -86,13 +102,13 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="exampleInputName" placeholder="Course" name="course">
+                                                      value="<?=$course?>"  id="exampleInputName" placeholder="Course" name="course">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg"
-                                                        id="exampleInputName" placeholder="Year Level" name="year">
+                                                     value="<?=$year?>"   id="exampleInputName" placeholder="Year Level" name="year">
                                                 </div>
                                             </div>
                                         </div>
@@ -123,19 +139,19 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-lg"
-                                                        value="<?= date('g:i A', strtotime($scheduleFrom))?>"
+                                                    <input type="time" class="form-control form-control-lg"
+                                                        value="<?= $scheduleFrom?>"
                                                         id="exampleInputName" placeholder="Subject Code"
-                                                        name="subjectfrom" readonly>
+                                                        name="schedulefrom" readonly>
                                                 </div>
                                             </div>
                                             <h3 style="margin-top: 10px;">-</h3>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-lg"
+                                                    <input type="time" class="form-control form-control-lg"
                                                         id="exampleInputName" placeholder="Subject Description"
-                                                        value="<?= date('g:i A', strtotime($scheduleTo))?>"
-                                                        name="subjectto" readonly>
+                                                        value="<?=$scheduleTo?>"
+                                                        name="scheduleto" readonly>
                                                 </div>
                                             </div>
 
@@ -144,7 +160,7 @@
 
                                         <div class="mt-3">
                                             <a class="btn btn-update btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                                href="" id="submit">Submit</a>
+                                                href="" id="submit">Update</a>
                                         </div>
                                     </form>
 
@@ -162,7 +178,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../client/js/register-students.js?ver=1.0"></script>
+    <script src="../client/js/update-student.js?ver=1.0"></script>
 
 
     <script src="../js/off-canvas.js"></script>

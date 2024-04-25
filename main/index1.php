@@ -162,6 +162,8 @@
                                                 <tr>
                                                     <th style="font-size: 25px;">Name</th>
                                                     <th style="font-size: 25px;">Subject</th>
+                                                    <th style="font-size: 25px;">Course</th>
+                                                    <th style="font-size: 25px;">Year</th>
                                                     <th style="font-size: 25px;">Status</th>
                                                     <th style="font-size: 25px;">Time In</th>
                                                 </tr>
@@ -231,7 +233,7 @@
  -->
 
     <script src="../js/off-canvas.js"></script>
-    <script src="../js/hoverable-collapse.js"></script>
+<script src="../js/hoverable-collapse.js"></script>
     <script src="../js/template.js"></script>
     <script src="../js/settings.js"></script>
     <script src="../js/todolist.js"></script>

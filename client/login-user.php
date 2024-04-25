@@ -32,6 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['subjectCode'] = $row['subjectCode'];
             $_SESSION['scheduleFrom'] = $row['scheduleFrom'];
             $_SESSION['scheduleTo'] = $row['scheduleTo'];
+            $_SESSION['firstname'] = $row['firstname'];
+            $_SESSION['middlename'] = $row['middlename'];
+            $_SESSION['lastname'] = $row['lastname'];
+            $_SESSION['suffix'] = $row['suffix'];
+            
 
             $response = array('success' => true, 'message' => 'Login successful');
         } else {

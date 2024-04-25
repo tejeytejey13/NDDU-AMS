@@ -1,5 +1,5 @@
 window.addEventListener("unload", function (event) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "../client/logout.php", true);
+    xhr.open("GET", "../client/update-status.php", true);
     xhr.send();
 });

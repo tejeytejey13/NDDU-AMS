@@ -15,6 +15,9 @@ function updateStudentsTable() {
                             <td style="display: none;">${student.rfidUID}</td>
                             <td style="font-size: 20px;" class="font-weight-bold">${student.name}</td>
                             <td style="font-size: 20px;">${student.subject}</td>
+                            <td style="font-size: 20px;">${student.course}</td>
+                            <td style="font-size: 20px;">${student.year}</td>
+                         
                             <td class="font-weight-medium">
                                 <div class="badge ${badgeColor}" style="font-size: 20px;">${student.status}</div>
                             </td>

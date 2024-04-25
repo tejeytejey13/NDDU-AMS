@@ -3,7 +3,6 @@ include '../server/config.php';
 header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Check if 'uid' key is set in the POST data
     if (isset($_POST['uid'])) {
         $uid = $_POST['uid'];
         $firstname = $_POST['firstname'];
@@ -14,23 +13,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $schedulefrom = $_POST['schedulefrom'];
         $scheduleto = $_POST['scheduleto'];
         $suffix = $_POST['suffix'];
-        $password = $_POST['password'];
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $course = $_POST['course'];
+        $year = $_POST['year'];
 
 
         $updateSql = "UPDATE users SET
             firstname = '$firstname',
             middlename = '$middlename',
             lastname = '$lastname',
-            suffix = '$suffix',
             subjectCode = '$subjectcode',
             subjectDescription = '$subjectdescription',
             scheduleFrom = '$schedulefrom',
             scheduleTo = '$scheduleto',
-            role = 'professor',
-            status = 'registered',
-            password = '$hashedPassword'
+            suffix = '$suffix',
+            course = '$course',
+            year = '$year'
             WHERE rfidUID = '$uid'";
 
         if ($conn->query($updateSql) === TRUE) {

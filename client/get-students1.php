@@ -16,23 +16,26 @@ if ($subjectCode) {
         $students = array();
 
         while ($data = $result->fetch_assoc()) {
-            $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname'];
+            $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname']. ' ' . $data['suffix'];
             $rfidUID = $data['rfidUID'];
             $subject = $data['subjectCode'] . ' ' . $data['subjectDescription'];
             $role = $data['role'];
-           
+            $course = $data['course'];
+            $year = $data['year'];
+
+      
 
             $selectAttendance = "SELECT * FROM attendance WHERE attendanceSubjectCode = '$subjectCode' and studentID = '$rfidUID'";
             $result1 = $conn->query($selectAttendance);
-        
+            
             $presentCount = 0;
             $lateCount = 0;
             $absentCount = 0;
-        
+            $date = date('Y-m-d');
             if ($result1) {
                 while ($data1 = $result1->fetch_assoc()) {
                     $attendanceStatus = $data1['attendanceStatus'];
-        
+                    $date = $data1['attendanceDate'];
                     switch ($attendanceStatus) {
                         case 'Present':
                             $presentCount++;
@@ -52,15 +55,23 @@ if ($subjectCode) {
                 $conn->query($updateQuery);
             }
         
-            if($absentCount != 3){
+            if($absentCount != 7){
                 $students[] = array(
                     'name' => $name,
+
                     'rfidUID' => $rfidUID,
                     'subject' => $subject,
                     'role' => $role,
+                    'course' => $course,
+                    'year' => $year,
+                    'date' => $date,
+
+                 
                     'presentCount' => $presentCount,
                     'lateCount' => $lateCount,
                     'absentCount' => $absentCount,
+
+                
                 );
             }
           

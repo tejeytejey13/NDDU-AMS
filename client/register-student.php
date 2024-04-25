@@ -3,61 +3,43 @@ include '../server/config.php';
 header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Check if 'uid' key is set in the POST data
-    if (isset($_POST['uid'])) {
+    // Check if required fields are set in the POST data
+    if (isset($_POST['uid'], $_POST['firstname'], $_POST['lastname'], $_POST['subjectcode'], $_POST['subjectdescription'], $_POST['suffix'], $_POST['course'], $_POST['year'])) {
         $uid = $_POST['uid'];
         $firstname = $_POST['firstname'];
-        $middlename = $_POST['middlename'];
+        $middlename = $_POST['middlename']; // Make sure to handle this if it's optional
         $lastname = $_POST['lastname'];
         $subjectcode = $_POST['subjectcode'];
         $subjectdescription = $_POST['subjectdescription'];
-        // $schedulefrom = $_POST['schedulefrom'];
-        // $scheduleto = $_POST['scheduleto'];
-        // $password = $_POST['password'];
+        $suffix = $_POST['suffix'];
+        $course = $_POST['course'];
+        $year = $_POST['year'];
 
-        // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-       
-        
-        $select = "SELECT * FROM users WHERE rfidUID = '$uid'";
-        $query = $conn->query($select);
-
-        if($query->num_rows > 0){
-            $inser = "INSERT INTO users (rfidUID, firstname, middlename, lastname, subjectCode, subjectDescription, role, status) 
-            VALUES ('$uid','$firstname', '$middlename', '$lastname', '$subjectcode', '$subjectdescription', 'student', 'registered')";
-
-            $updateSqlUID = "UPDATE uid SET
-                active= '3'
-                WHERE user_id = '$uid'";
-
-            if($conn->query($inser) === TRUE && $conn->query($updateSqlUID) === TRUE){
-                $response['success'] = true;
-                $response['message'] = 'UID recorded.';
-            } else {
-                $response['message'] = 'Error inserting attendance: ' . $conn->error;
-            }
-
-            
-
+        // Check if the uid is empty
+        if (empty($uid)) {
+            $response = array('success' => false, 'message' => 'UID is required.');
         } else {
-            $inser = "INSERT INTO users (rfidUID, firstname, middlename, lastname, subjectCode, subjectDescription, role, status) 
-            VALUES ('$uid','$firstname', '$middlename', '$lastname', '$subjectcode', '$subjectdescription', 'student', 'registered')";
+            // Insert data into the users table
+            $insert = "INSERT INTO users (rfidUID, firstname, middlename, lastname, subjectCode, subjectDescription, suffix, course, year, role, status) 
+                VALUES ('$uid','$firstname', '$middlename', '$lastname', '$subjectcode', '$subjectdescription', '$suffix', '$course', '$year', 'student', 'enrolled')";
 
-            $updateSqlUID = "UPDATE uid SET
-                active= '3'
-                WHERE user_id = '$uid'";
-
-            if($conn->query($inser) === TRUE && $conn->query($updateSqlUID) === TRUE){
-                $response['success'] = true;
-                $response['message'] = 'UID recorded.';
+            if ($conn->query($insert) === TRUE) {
+                // Update active status in uid table
+                $updateSqlUID = "UPDATE uid SET active = '3' WHERE user_id = '$uid'";
+                if ($conn->query($updateSqlUID) === TRUE) {
+                    $response['success'] = true;
+                    $response['message'] = 'UID recorded.';
+                } else {
+                    $response['success'] = false;
+                    $response['message'] = 'Error updating UID status: ' . $conn->error;
+                }
             } else {
-                $response['message'] = 'Error inserting attendance: ' . $conn->error;
+                $response['success'] = false;
+                $response['message'] = 'Error inserting data: ' . $conn->error;
             }
         }
-
-      
-        $conn->close();
     } else {
-        $response = array('success' => false, 'message' => 'Invalid POST data: "uid" key is not set.');
+        $response = array('success' => false, 'message' => 'Required fields are missing.');
     }
 } else {
     $response = array('success' => false, 'message' => 'Invalid request method.');

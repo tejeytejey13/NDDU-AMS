@@ -40,8 +40,8 @@ function updateStudentsTable() {
                         </td>
                       
                         <td> 
-                            <button type="button" class="btn btn-primary" onclick="openModal('${student.date}', '${student.status}', '${student.rfidUID}', '${student.id}')">
-                             View
+                            <button type="button" class="btn btn-success" onclick="openModal('${student.date}', '${student.status}', '${student.rfidUID}', '${student.id}')">
+                            <i class="ti-pencil-alt"></i>
                             </button>
                         </td>
                     

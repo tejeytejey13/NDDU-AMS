@@ -18,6 +18,13 @@
                 <span class="menu-title">Register Student</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="profile.php">
+                <i class="ti-settings menu-icon"></i>
+                <span class="menu-title">Profile</span>
+            </a>
+        </li>
+
 
 
         <li class="nav-item" style="text-align:center; font-weight: 900; margin-top: 65vh;">

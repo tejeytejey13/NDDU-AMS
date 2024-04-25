@@ -13,11 +13,14 @@ if ($subjectCode) {
         $students = array();
 
         while ($data = $result->fetch_assoc()) {
-            $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname'];
+            $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname']. ' ' . $data['suffix'];
             $rfidUID = $data['rfidUID'];
             $subject = $data['subjectCode'] . ' ' . $data['subjectDescription'];
             $role = $data['role'];
-
+            $course = $data['course'];
+            $year = $data['year'];
+            
+        
             $status = '';
 
             $selectAttendance = "SELECT * FROM attendance WHERE attendanceSubjectCode = '$subjectCode' AND studentID = '$rfidUID' AND attendanceDate = CURDATE()";
@@ -38,8 +41,13 @@ if ($subjectCode) {
                     'rfidUID' => $rfidUID,
                     'subject' => $subject,
                     'role' => $role,
+                    'course' => $course,
+                    'year' => $year,
                     'status' => $status,
-                    'timeIn' => $timeIn
+                    'timeIn' => $timeIn,
+
+              
+
                 );
           
           

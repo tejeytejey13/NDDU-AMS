@@ -3,14 +3,14 @@ session_start();
 include '../server/config.php';
 
 $subjectCode = $_SESSION['subjectCode'] ?? null;
+$selectedDate = $_POST['date'] ?? null; // Assuming the form is submitted using POST method
 
-if ($subjectCode) {
-    $selectQuery = "SELECT * FROM users WHERE subjectCode = '$subjectCode' AND role = 'student' ORDER BY lastname";
+if ($subjectCode && $selectedDate) { // Check if both subject code and selected date are set
+    $selectQuery = "SELECT * FROM users WHERE subjectCode = '$subjectCode' AND role = 'student' ORDER BY lastname"; 
     
     $result = $conn->query($selectQuery);
 
     if ($result) {
-        // Set headers for CSV download
         header('Content-Type: text/csv');
         header('Content-Disposition: attachment; filename="student_attendance_records.csv"');
 
@@ -18,25 +18,33 @@ if ($subjectCode) {
         $output = fopen('php://output', 'w');
 
         // Write CSV header
-        fputcsv($output, array('Name', 'Subject', 'Role', 'Present', 'Late', 'Absent'));
+        fputcsv($output, array('Name', 'Subject', 'Course', 'Year', 'Present', 'Late', 'Absent', 'Date', 'Time', 'Attendance Status', 'Student Status'));
 
         while ($data = $result->fetch_assoc()) {
-            $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname'];
+            $name = $data['firstname'] . ' ' . $data['middlename'] . ' ' . $data['lastname'] . ' ' . $data['suffix'];
             $rfidUID = $data['rfidUID'];
             $subject = $data['subjectCode'] . ' ' . $data['subjectDescription'];
-            $role = $data['role'];
+            $course = $data['course'];
+            $year = $data['year'];
 
-            $selectAttendance = "SELECT * FROM attendance WHERE attendanceSubjectCode = '$subjectCode' and studentID = '$rfidUID'";
-            $result1 = $conn->query($selectAttendance);
-        
+            $attendanceStatus = "Not Recorded";
+
             $presentCount = 0;
             $lateCount = 0;
             $absentCount = 0;
-        
+            $date = ""; 
+            $time = "";
+
+            // Modify the query to filter attendance records based on selected date
+            $selectAttendance = "SELECT * FROM attendance WHERE attendanceSubjectCode = '$subjectCode' AND studentID = '$rfidUID' AND attendanceDate = '$selectedDate'"; 
+            $result1 = $conn->query($selectAttendance);
+
             if ($result1) {
                 while ($data1 = $result1->fetch_assoc()) {
                     $attendanceStatus = $data1['attendanceStatus'];
-        
+                    $time = $data1['attendanceTime'];
+                    $date = $data1['attendanceDate']; 
+
                     switch ($attendanceStatus) {
                         case 'Present':
                             $presentCount++;
@@ -49,27 +57,27 @@ if ($subjectCode) {
                             break;
                     }
                 }
-            }
-            
-            if($absentCount == 7){
-                $updateQuery = "UPDATE users SET status = 'dropped' WHERE rfidUID = '$rfidUID' AND subjectCode = '$subjectCode'";
-                $conn->query($updateQuery);
-            }
-        
-            if($absentCount != 3){
-                // Write data to CSV
-                fputcsv($output, array($name, $subject, $role, $presentCount, $lateCount, $absentCount));
+
+                // Write CSV row only if attendance records are found for the selected date
+                if ($result1->num_rows > 0) {
+                    $studentStatus = $data['status'];
+
+                    if ($absentCount == 7) {
+                        $updateQuery = "UPDATE users SET status = 'dropped' WHERE rfidUID = '$rfidUID' AND subjectCode = '$subjectCode'";
+                        $conn->query($updateQuery);
+                    }
+
+                    fputcsv($output, array($name, $subject, $course, $year, $presentCount, $lateCount, $absentCount, $date, $time, $attendanceStatus, $studentStatus));
+                }
             }
         }
 
         // Close output stream
         fclose($output);
     } else {
-        // Query execution failed
         echo "Query execution failed: " . $conn->error;
     }
 } else {
-    // Handle the case where $_SESSION['subjectCode'] is not set
-    echo "Subject code not set in session.";
+    echo "Subject code or date not set.";
 }
 ?>

@@ -8,6 +8,7 @@ $(document).on('click', '.btn-update', function(e) {
         lastname: $('input[name=lastname]').val(),
         subjectcode: $('input[name=subjectcode]').val(),
         subjectdescription: $('input[name=subjectdescription]').val(),
+        suffix: $('#exampleInputSuffix').val(),
         schedulefrom: $('input[name=schedulefrom]').val(),
         scheduleto: $('input[name=scheduleto]').val(),
         password: $('input[name=password]').val(),
